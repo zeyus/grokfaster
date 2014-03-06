@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>this is a test</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+	(function($, document, undefined){
+		'use strict';
+		$(function() {    
+			var conf ={
+				'wpm': 500
+			};
+			var delay = 60/conf.wpm*1000;
+			$('#giveMeAQuickie').on('click', function(){
+				var allText = $('#content').text();
+				var words = allText.split(' ');
+				$('#content').before('<div class="quickieViewer"></div>');
+				var $viewer = $('.quickieViewer');
+				var wordCount = words.length;
+				var jobID = setInterval(function(){
+					var word = words.shift();
+					if(!word){
+						clearInterval(jobID);
+						$viewer.remove();
+						return;
+					}
+					$viewer.html(word);
+
+				}, delay);
+				return;
+				words.each(function(i,v){
+					$viewer.html(v);
+				});
+			});
+		})
+	}(jQuery, window.document));
+</script>
+</head>
+<body>
+<input type="button" name="quickie" value="quickie" id="giveMeAQuickie" />
+<div id="content">
+<p>Meggings mlkshk yr Etsy cornhole letterpress, typewriter fashion axe Tumblr semiotics. Thundercats street art narwhal, PBR&B cornhole freegan typewriter yr. Blue Bottle messenger bag mixtape, yr Tonx gluten-free cliche. Jean shorts messenger bag fashion axe, fingerstache art party Godard trust fund. Street art normcore distillery, Truffaut tattooed leggings Tumblr asymmetrical twee McSweeney's aesthetic mustache. Lomo wayfarers tote bag retro, plaid meh 3 wolf moon. Asymmetrical food truck kitsch you probably haven't heard of them cred, sartorial letterpress single-origin coffee seitan organic.</p>
+
+<p>Lo-fi letterpress mlkshk, biodiesel lomo chambray aesthetic. Roof party Schlitz PBR&B bitters Tumblr wolf quinoa. PBR Odd Future mixtape tousled Intelligentsia ethnic, gentrify Wes Anderson forage flexitarian next level. Church-key tote bag meh, wayfarers meggings ethnic viral McSweeney's drinking vinegar sartorial scenester pork belly cliche pug. Actually banh mi four loko, pop-up mumblecore tattooed Williamsburg meggings wayfarers selfies kogi lo-fi forage cray deep v. Literally Austin quinoa drinking vinegar, keytar selfies hoodie Marfa Terry Richardson meh butcher shabby chic actually Intelligentsia trust fund. Plaid vegan wolf polaroid 3 wolf moon, blog drinking vinegar single-origin coffee mumblecore flannel organic distillery salvia banjo.</p>
+
+<p>Meggings keffiyeh polaroid hella slow-carb yr, semiotics wolf. Mumblecore normcore cray, meh skateboard synth Austin you probably haven't heard of them ugh. Readymade sustainable YOLO skateboard, tofu artisan cray master cleanse ennui. Banjo iPhone freegan forage, beard occupy quinoa organic DIY locavore. Portland yr tousled, fashion axe banh mi pour-over Marfa chambray vinyl. Synth pug ethical retro, gastropub Banksy Carles American Apparel disrupt. Helvetica you probably haven't heard of them pork belly, mixtape hoodie Godard sartorial yr before they sold out scenester.</p>
+
+<p>Polaroid 8-bit four loko, letterpress church-key pork belly locavore. Slow-carb gastropub direct trade dreamcatcher cardigan. Hoodie mustache VHS, Shoreditch tousled pour-over polaroid bicycle rights you probably haven't heard of them slow-carb Banksy XOXO squid semiotics Godard. Etsy deep v Wes Anderson slow-carb ethical seitan bicycle rights, leggings drinking vinegar locavore flexitarian umami ennui street art. Gentrify fap retro cray, ennui forage vinyl small batch chillwave irony. Slow-carb letterpress four loko PBR&B fashion axe. Leggings Echo Park salvia, ugh food truck 8-bit aesthetic roof party.</p>
+
+<p>Banjo ethical pug cred tousled tofu craft beer, VHS mixtape Helvetica Schlitz. Trust fund church-key locavore, actually plaid American Apparel leggings irony. Vinyl bitters fixie messenger bag polaroid fap McSweeney's, sartorial street art Helvetica Blue Bottle art party PBR&B butcher. Jean shorts you probably haven't heard of them mixtape next level McSweeney's. Skateboard Neutra hashtag, cornhole bespoke before they sold out Vice umami beard PBR&B. Aesthetic swag Thundercats High Life, master cleanse four loko pickled bespoke ethical 90's beard Marfa Brooklyn next level Carles. Ethnic tote bag Pitchfork kitsch pug.</p>
+
+<p>Banksy retro Neutra, authentic kogi fixie hashtag slow-carb fingerstache normcore freegan. Truffaut disrupt Tonx, kogi direct trade bitters +1 Schlitz blog fashion axe Helvetica messenger bag twee vinyl 8-bit. Jean shorts forage aesthetic, cornhole pug plaid artisan single-origin coffee food truck Austin kitsch flannel gentrify ethical fashion axe. Vice farm-to-table scenester, Pitchfork quinoa seitan blog. Blog gastropub roof party, tattooed next level authentic squid. Deep v fashion axe roof party gastropub, Etsy Portland swag organic cred Pitchfork aesthetic post-ironic +1 shabby chic art party. Aesthetic whatever deep v forage, Echo Park craft beer Blue Bottle 90's.</p>
+
+<p>Freegan readymade umami hella, master cleanse sriracha ethical flannel. Before they sold out mixtape Schlitz, drinking vinegar Terry Richardson chambray keffiyeh twee small batch. Cred tofu next level, sustainable Tumblr artisan Schlitz seitan Wes Anderson. Bitters gastropub Schlitz, iPhone stumptown kitsch vegan occupy readymade actually selfies quinoa dreamcatcher twee. Beard cliche McSweeney's freegan, stumptown roof party meggings raw denim Blue Bottle gentrify wolf organic VHS. Dreamcatcher vinyl distillery, McSweeney's Terry Richardson High Life farm-to-table master cleanse squid retro 3 wolf moon whatever hoodie Tonx. 90's pickled Truffaut Williamsburg Wes Anderson McSweeney's drinking vinegar.</p>
+
+<p>Bitters Marfa pug, occupy ugh fingerstache try-hard keffiyeh cornhole cred. Blog XOXO PBR&B try-hard bespoke forage sartorial. Plaid selvage mustache, fixie flannel seitan Intelligentsia disrupt bespoke Portland sartorial small batch mumblecore tofu beard. Meggings seitan YOLO, occupy Tumblr disrupt brunch. Jean shorts pug vinyl, Bushwick vegan flannel meggings Godard ethnic Marfa. Banh mi kitsch raw denim mustache mlkshk. Plaid Tonx yr single-origin coffee Austin, skateboard fixie Carles scenester.</p>
+
+<p>Freegan bespoke swag, put a bird on it chia retro sartorial cred kogi brunch. Gastropub Cosby sweater YOLO Shoreditch, brunch sartorial butcher selfies keffiyeh plaid distillery tote bag kale chips. Keffiyeh chambray Pinterest biodiesel. +1 Intelligentsia chambray hashtag Pinterest gastropub. Kitsch authentic brunch, selfies mlkshk cred stumptown mustache Odd Future +1. 90's hella organic 3 wolf moon letterpress Etsy. Quinoa Shoreditch next level pork belly narwhal, disrupt small batch XOXO Schlitz forage.</p>
+
+<p>Hella organic trust fund street art keffiyeh, selfies four loko selvage. Bicycle rights wolf plaid, Wes Anderson Thundercats try-hard kogi Blue Bottle shabby chic wayfarers banh mi actually. Tumblr raw denim irony viral Etsy. Four loko vegan roof party 3 wolf moon Portland. Mlkshk blog 8-bit butcher biodiesel cliche, Schlitz High Life XOXO put a bird on it keffiyeh fingerstache. Drinking vinegar try-hard squid quinoa, vegan Echo Park fap High Life retro master cleanse dreamcatcher. Lomo vinyl photo booth, messenger bag kogi biodiesel Thundercats flannel scenester VHS paleo beard you probably haven't heard of them ethical.</p>
+</div>
+</script>
+</body>
+</html>
