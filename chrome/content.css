@@ -1,7 +1,10 @@
 #grokCurrentWord {
-  margin: auto;
-  position: absolute;
-  height:50px;
-  width: 100px;
-  top: 0; left: 0; bottom: 0; right: 0;
+  position:fixed;
+  z-index: 999;  
+  top:50%;  
+  left:50%;  
+  margin:-50px 0 0 -100px;  
+  width:200px;  
+  height:100px; 
+  background-color: white;
 }
