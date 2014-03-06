@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "grokfaster",
-  "description": "This extension allows you to block out the cruft and focus on reading what you want to. Fast.",
+  "description": "speed read the internet, grok what you need to, faster.",
   "version": "0.1",
 
   "icons": {
