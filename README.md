@@ -8,10 +8,11 @@ What's here currently is a concept, and has no styling etc yet, and I'll remove 
 But ideally it'll look good with a nice UI for adjusting WPM and other settings.
 
 
+
 Ideas for further developement:
 -------------
 + Style/color different types of text, such as: "text within quotation-marks", (text within parentheses), bold text, italic text, hyphenation, etc etc
 + Style H1 - H5 text (web-based text styling)
-+ Pause-button with possibility to break the auto-reading and bringing up the part of the text that you paused at.
++ Pause-button with possibility to break the auto-reading and bringing up the part of the text that you paused at
 + Pay attention to the punctuation such as comma-signs
 + Longer break/pause needed for new sentience (Give time for cognitive understanding that new information begins) 
