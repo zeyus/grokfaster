@@ -15,7 +15,6 @@
 				var words = allText.split(' ');
 				$('#content').before('<div class="quickieViewer"></div>');
 				var $viewer = $('.quickieViewer');
-				var wordCount = words.length;
 				var jobID = setInterval(function(){
 					var word = words.shift();
 					if(!word){
@@ -26,10 +25,6 @@
 					$viewer.html(word);
 
 				}, delay);
-				return;
-				words.each(function(i,v){
-					$viewer.html(v);
-				});
 			});
 		})
 	}(jQuery, window.document));
