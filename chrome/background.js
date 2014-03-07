@@ -31,7 +31,6 @@ chrome.runtime.onMessage.addListener(
 	    	var new_options = {};
 	    	//save first
 	    	if(request.options){
-	    		console.log(request.options);
 	    		for(var option in default_options){
 	    			//for some reason using options[option] results in undefined???
 	    			new_options[option] = (request.options[option] !== undefined) ? request.options[option] : default_options[option];
@@ -50,24 +49,19 @@ chrome.runtime.onMessage.addListener(
   }
 );
 chrome.runtime.onInstalled.addListener(function(){
-	console.log('install run');
 	chrome.contextMenus.create({
 		'id': 'grokfaster_context_menu',
 	    'title': 'grokfaster',
 	    'contexts': ['selection']
-	}, function(){
-		console.log('context menu create run');
 	});
 });
 
 chrome.contextMenus.onClicked.addListener(
 	function(info, tab) {
-		console.log('context menu click handler run');
     	chrome.tabs.query({
         	'active': true,
         	'currentWindow': true
     	}, function (tabs) {
-    		console.log('tab query callback run');
         	chrome.tabs.sendMessage(tabs[0].id, {
             	'action': 'grok_start',
         	});

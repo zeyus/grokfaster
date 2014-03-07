@@ -1,6 +1,7 @@
 
 var options = {};
 var grokfaster_running = false;
+var grokfaster_shutting_down = false;
 var grokfaster_paused = false;
 var delay =  60/300*1000;
 var grokfaster = {
@@ -92,8 +93,10 @@ var grokfaster = {
 				document.body.removeChild(bg_el);
 			}
 			document.body.removeChild(container_el);
-			document.removeEventListener('keyup', handle_key_events);
+			document.removeEventListener('keydown', handle_key_events);
 			grokfaster_running = false;
+			grokfaster_paused = false;
+			grokfaster_shutting_down = false;
 		}
 
 		var grokfaster_pause = function(){
@@ -103,14 +106,16 @@ var grokfaster = {
 				grokfaster_paused = true;
 				jobID = 0;
 			}else if(grokfaster_paused){
-				jobID = setInterval(grokfaster_run, delay);
 				grokfaster_paused = false;
+				jobID = setInterval(grokfaster_run, delay);	
 			}
 		}
 
 		var handle_key_events = function(e){
+			if(!grokfaster_running){return;}
 			e = e || window.event;
-    		if (e.keyCode == 27) {
+    		if (e.keyCode === 27) {
+    			grokfaster_shutting_down = true;
     			grokfaster_kill();
     		}else if(e.keyCode == 32){
 				e.preventDefault();
@@ -120,12 +125,13 @@ var grokfaster = {
 
 		bg_el.addEventListener('click', grokfaster_kill);
 
-		document.addEventListener('keydown', handle_key_events, true);
+		document.addEventListener('keydown', handle_key_events);
 
 		var nextWord = '';
 		var first = true;
 		var word_tmp = '';
 		var grokfaster_run = function(){
+			if(!grokfaster_running||grokfaster_shutting_down||grokfaster_paused){return;}
 			if(first){
 				first = false;
 				if(options.focal_point){
@@ -150,8 +156,9 @@ var grokfaster = {
 			if(!nextWord){
 				next_word_el.innerHTML = '&nbsp;';
 				clearInterval(jobID);
+				grokfaster_shutting_down = true;
 				setTimeout(grokfaster_kill,delay+1000);
-				//grokfaster_running = false;
+				grokfaster_running = false;
 				return;
 			}
 			if(options.focal_point){
@@ -176,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	  		case 'grok_start':
 	  			chrome.runtime.sendMessage({action: "options"}, function(response) {
 					options = response;
-					console.log(window.getSelection().toString());
 		  			grokfaster.grok(window.getSelection().toString());
 				});
 	  			

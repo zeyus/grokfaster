@@ -22,7 +22,6 @@ var grokfaster = {
 				var focal_point = focal_point_el.checked ? true : false;
 				var show_additional = show_additional_el.checked ? true : false;
 				var dim_background = dim_background_el.checked ? true : false;
-				console.log(focal_point);
 				chrome.runtime.sendMessage(
 					{
 						action: "options", 
@@ -43,7 +42,6 @@ var grokfaster = {
 
 		chrome.runtime.sendMessage({action: "options"}, function(response) {
 			options = response;
-  			console.log(options);
 			wpm_el.value = options.wpm;
 			wpm_val_el.value = options.wpm;
 
