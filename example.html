@@ -1,6 +1,41 @@
 <html>
 <head>
 <title>this is a test</title>
+<style type="text/css">
+#container {
+  padding-left: 200px;   /* LC fullwidth */
+  padding-right: 190px;  /* RC fullwidth + CC padding */
+}
+#container .column {
+  position: relative;
+  float: left;
+}
+#center {
+  padding: 10px 20px;    /* CC padding */
+  width: 100%;
+  text-align:center;
+}
+#left {
+  width: 180px;          /* LC width */
+  padding: 0 10px;       /* LC padding */
+  right: 240px;          /* LC fullwidth + CC padding */
+  margin-left: -100%;
+  text-align: right;
+}
+#right {
+  width: 130px;          /* RC width */
+  padding: 0 10px;       /* RC padding */
+  margin-right: -190px;  /* RC fullwidth + CC padding */
+  text-align: left;
+}
+#footer {
+  clear: both;
+}
+.aw { border-collapse: collapse; } /* remove cell spacing */
+.aw td { padding: 0; }             /* remove cell padding */
+.aw td:first-child { text-align: right; }
+.aw b { font-weight: bold; color: red; }
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script type="text/javascript">
 	(function($, document, undefined){
@@ -31,7 +66,18 @@
 </script>
 </head>
 <body>
+<table class=aw>
+<tr><td>stac<td><b>k</b>
+<tr><td>ov<td><b>e</b>rflow
+<tr><td>s<td><b>t</b>ack
+<tr><td>over<td><b>f</b>low
+</table>
+<div style="width:200px; margin:0 auto; clear:both; border:1px solid black;text-align:center;">
+	<span style="pading:0;margin:0;padding-left:19px;">a</span><span style="pading:0;margin:0;">p</span><span style="pading:0;margin:0;">ple</span>
+</div>
+
 <input type="button" name="quickie" value="quickie" id="giveMeAQuickie" />
+
 <div id="content">
 <p>Meggings mlkshk yr Etsy cornhole letterpress, typewriter fashion axe Tumblr semiotics. Thundercats street art narwhal, PBR&B cornhole freegan typewriter yr. Blue Bottle messenger bag mixtape, yr Tonx gluten-free cliche. Jean shorts messenger bag fashion axe, fingerstache art party Godard trust fund. Street art normcore distillery, Truffaut tattooed leggings Tumblr asymmetrical twee McSweeney's aesthetic mustache. Lomo wayfarers tote bag retro, plaid meh 3 wolf moon. Asymmetrical food truck kitsch you probably haven't heard of them cred, sartorial letterpress single-origin coffee seitan organic.</p>
 
