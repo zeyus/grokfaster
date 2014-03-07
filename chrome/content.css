@@ -7,7 +7,7 @@
   width:300px;  
   height:100px;
   line-height: 92px;
-  text-align: center;
+  text-align: left;
   background-color: transparent;
   color:black;
   font-family: "Helvetica", "Arial", "Verdana", sans-serif;
@@ -57,19 +57,19 @@
 #grokReader #grokCurrentWord .grokWordPrefix {
     display: inline-block;
     text-align: right;
+    float:left;
     box-sizing:content-box;
-	width: 40%;
-	margin-left: -56%;
+	width: 30%;
 }
 
 #grokReader #grokCurrentWord .grokWordHighlight {
     color: red;
+    display: inline-block;
     box-sizing:content-box;
 }
 
 #grokReader #grokCurrentWord .grokWordSuffix {
-    position: absolute;
-    left: 46%;
+    display: inline-block;
     box-sizing:content-box;
 }
 

@@ -30,20 +30,19 @@ chrome.runtime.onMessage.addListener(
 	    	var new_options = {};
 	    	//save first
 	    	if(request.options){
+	    		console.log(request.options);
 	    		for(var option in default_options){
 	    			//for some reason using options[option] results in undefined???
-	    			new_options[option] = request.options[option] || default_options[option];
+	    			new_options[option] = (request.options[option] !== undefined) ? request.options[option] : default_options[option];
 	    		}
 	    		options = new_options;
 	    		localStorage['options'] = JSON.stringify(options);
-	    		console.log(options);
 	    		//chrome.storage.sync.set({options: options});
 	    	}
 	    	//TODO: add chrome sync for options...annoyingly this is an async call
 	    	//chrome.storage.sync.get('options', function(obj){
 	    	//	sendResponse(options);
 	    	//});
-			console.log(options);
 			sendResponse(options);
 	    	break;
 	}

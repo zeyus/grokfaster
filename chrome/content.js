@@ -12,7 +12,7 @@ var grokfaster = {
 		console.log('fp'+focal_point);
 		console.log('len'+len);
 		if(len === 1 || focal_point === 0){
-			return ['', word.charAt(0), word.substr(1)]
+			return ['&nbsp;', word.charAt(0), word.substr(1)]
 		}else{
 			var suffix = (focal_point+1>=len) ? '' : word.substr(focal_point+1);
 			return [word.substr(0,focal_point), word.charAt(focal_point), suffix]
@@ -59,6 +59,7 @@ var grokfaster = {
 
 		bg_el.setAttribute('id','grokFadeBG');
 		container_el.setAttribute('id', 'grokReader');
+		container_el.style['text-align'] = options.focal_point ? 'left' : 'center';
 		prev_word_el.setAttribute('id', 'grokPreviousWord');
 		next_word_el.setAttribute('id', 'grokNextWord');
 		word_el.setAttribute('id', 'grokCurrentWord');
@@ -161,16 +162,19 @@ var grokfaster = {
 	
 };
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-  	switch (request.action){ 
-  		case 'grok_start':
-  			chrome.runtime.sendMessage({action: "options"}, function(response) {
-				options = response;
-	  			grokfaster.grok(window.getSelection().toString());
-			});
-  			
-	    	break;
-	}
-  }
-);
+document.addEventListener('DOMContentLoaded', function () {
+	chrome.runtime.onMessage.addListener(
+	  function(request, sender, sendResponse) {
+	  	switch (request.action){ 
+	  		case 'grok_start':
+	  			chrome.runtime.sendMessage({action: "options"}, function(response) {
+					options = response;
+		  			grokfaster.grok(window.getSelection().toString());
+				});
+	  			
+		    	break;
+		}
+	  }
+	);
+});
+
