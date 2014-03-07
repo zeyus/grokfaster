@@ -9,8 +9,7 @@ var grokfaster = {
 		}
 		var len = word.length;
 		var focal_point = Math.ceil(len / 4.0);
-		console.log('fp'+focal_point);
-		console.log('len'+len);
+
 		if(len === 1 || focal_point === 0){
 			return ['&nbsp;', word.charAt(0), word.substr(1)]
 		}else{
@@ -66,15 +65,20 @@ var grokfaster = {
 
 
 
-		container_el.appendChild(prev_word_el);
+		if(options.show_additional){
+			container_el.appendChild(prev_word_el);
+		}
 		container_el.appendChild(word_el);
-		container_el.appendChild(next_word_el);
+		if(options.show_additional){
+			container_el.appendChild(next_word_el);
+		}
 		
 		prev_word_el.innerHTML = '&nbsp;';
 		word_el.innerHTML = '&nbsp;';
 		//next_word_el.innerHTML = '&nbsp;';
-
-		document.body.appendChild(bg_el);
+		if(options.dim_background){
+			document.body.appendChild(bg_el);
+		}
 		document.body.appendChild(container_el);
 		var jobID = 0;
 
@@ -83,7 +87,9 @@ var grokfaster = {
 			if(jobID){
 				clearInterval(jobID);
 			}
-			document.body.removeChild(bg_el);
+			if(options.dim_background){
+				document.body.removeChild(bg_el);
+			}
 			document.body.removeChild(container_el);
 			document.removeEventListener('keyup', handle_key_events);
 			grokfaster_running = false;

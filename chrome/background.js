@@ -9,6 +9,7 @@ var default_options = {
 	'pause_paragraph_time': 0,
 	'pause_other': false, //comma, semicolon, colon, etc
 	'pause_other_time': 300, //time in ms to pause
+	'show_additional': true // show the previous and next words
 };
 
 chrome.runtime.onMessage.addListener(
