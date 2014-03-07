@@ -3,14 +3,29 @@ var options = {};
 var grokfaster_running = false;
 var grokfaster_paused = false;
 var grokfaster = {
-	shiftword: function(words){
+	format_word: function(word){
+		if(!options.focal_point){
+			return word;
+		}
+		var len = word.length;
+		var focal_point = Math.ceil(len / 4.0);
+		console.log('fp'+focal_point);
+		console.log('len'+len);
+		if(len === 1 || focal_point === 0){
+			return ['', word.charAt(0), word.substr(1)]
+		}else{
+			var suffix = (focal_point+1>=len) ? '' : word.substr(focal_point+1);
+			return [word.substr(0,focal_point), word.charAt(focal_point), suffix]
+		}
+	},
+	prepare_next_word: function(words){
 		var word = '';
 		while(word === ''){
 			word = words.shift();
 			if(word === undefined){return false;}
 			word = word.replace(/\s/gm,'');
 		}
-		return word;
+		return grokfaster.format_word(word);
 	},
 	grok: function(text){
 		if(grokfaster_running){return;}
@@ -20,9 +35,22 @@ var grokfaster = {
 		var next_word_el =  document.createElement('div');
 		var word_el = document.createElement('div');
 
+		if(options.focal_point){
+			var word_part_1 = document.createElement('span');
+			var word_part_2 = document.createElement('span');
+			var word_part_3 = document.createElement('span');
+
+			word_part_1.setAttribute('class', 'grokWordPrefix');
+			word_part_2.setAttribute('class', 'grokWordHighlight');
+			word_part_3.setAttribute('class', 'grokWordSuffix');
+
+			next_word_el.appendChild(word_part_1);
+			next_word_el.appendChild(word_part_2);
+			next_word_el.appendChild(word_part_3);
+		}
+
 		var bg_el = document.createElement('div');
 		var words = text.replace(/\r|\n/gm, ' ');
-		console.log(words);
 		words = words.split(' ');
 
 		if(words.length<2){return;}
@@ -35,13 +63,15 @@ var grokfaster = {
 		next_word_el.setAttribute('id', 'grokNextWord');
 		word_el.setAttribute('id', 'grokCurrentWord');
 
+
+
 		container_el.appendChild(prev_word_el);
 		container_el.appendChild(word_el);
 		container_el.appendChild(next_word_el);
 		
 		prev_word_el.innerHTML = '&nbsp;';
 		word_el.innerHTML = '&nbsp;';
-		next_word_el.innerHTML = '&nbsp;';
+		//next_word_el.innerHTML = '&nbsp;';
 
 		document.body.appendChild(bg_el);
 		document.body.appendChild(container_el);
@@ -86,15 +116,27 @@ var grokfaster = {
 
 		var nextWord = '';
 		var first = true;
-
+		var word_tmp = '';
 		var grokfaster_run = function(){
 			if(first){
 				first = false;
-				word_el.innerHTML=grokfaster.shiftword(words);
-				next_word_el.innerHTML=grokfaster.shiftword(words);
+				if(options.focal_point){
+					word_tmp = grokfaster.prepare_next_word(words);
+					word_part_1.innerHTML = word_tmp[0];
+					word_part_2.innerHTML = word_tmp[1];
+					word_part_3.innerHTML = word_tmp[2];
+					word_el.innerHTML = next_word_el.innerHTML;
+					word_tmp = grokfaster.prepare_next_word(words);
+					word_part_1.innerHTML = word_tmp[0];
+					word_part_2.innerHTML = word_tmp[1];
+					word_part_3.innerHTML = word_tmp[2];
+				}else{
+					word_el.innerHTML=grokfaster.prepare_next_word(words);
+					next_word_el.innerHTML=grokfaster.prepare_next_word(words);
+				}
 				return;
 			}
-			nextWord = grokfaster.shiftword(words);
+			nextWord = grokfaster.prepare_next_word(words);
 			prev_word_el.innerHTML = word_el.innerHTML;
 			word_el.innerHTML=next_word_el.innerHTML;
 			if(!nextWord){
@@ -104,9 +146,13 @@ var grokfaster = {
 				//grokfaster_running = false;
 				return;
 			}
-			
-			next_word_el.innerHTML = nextWord;
-
+			if(options.focal_point){
+				word_part_1.innerHTML = nextWord[0];
+				word_part_2.innerHTML = nextWord[1];
+				word_part_3.innerHTML = nextWord[2];
+			}else{
+				next_word_el.innerHTML = nextWord;
+			}
 			curWord=nextWord;
 		}
 
