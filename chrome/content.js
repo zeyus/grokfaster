@@ -49,7 +49,7 @@ var grokfaster = {
 		}
 
 		var bg_el = document.createElement('div');
-		var words = text.replace(/\r|\n/gm, ' ');
+		var words = text.replace(/\r|\n|\s+/gm, ' ');
 		words = words.split(' ');
 
 		if(words.length<2){return;}
@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	  		case 'grok_start':
 	  			chrome.runtime.sendMessage({action: "options"}, function(response) {
 					options = response;
+					console.log(window.getSelection().toString());
 		  			grokfaster.grok(window.getSelection().toString());
 				});
 	  			

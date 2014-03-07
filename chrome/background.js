@@ -4,11 +4,11 @@ var default_options = {
 	'focal_point': true, //highlight the focal point
 	'dim_background': true, //fade the background
 	'pause_sentence': true, // slight pause after each full stop
-	'pause_sentence_time': 300, //time in ms to pause
+	'pause_sentence_time': 300, //additional time in ms to pause
 	'pause_paragraph': false, //extra pause for end of P?
 	'pause_paragraph_time': 0,
 	'pause_other': false, //comma, semicolon, colon, etc
-	'pause_other_time': 300, //time in ms to pause
+	'pause_other_time': 300, //additional time in ms to pause
 	'show_additional': true // show the previous and next words
 };
 
@@ -49,19 +49,29 @@ chrome.runtime.onMessage.addListener(
 	}
   }
 );
-
-
-chrome.contextMenus.create({
-    'title': 'grokfaster',
-    'contexts': ['selection'],
-    'onclick': function(info, tab) {
-        chrome.tabs.query({
-            'active': true,
-            'currentWindow': true
-        }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-                'action': 'grok_start',
-            });
-        });
-    }
+chrome.runtime.onInstalled.addListener(function(){
+	console.log('install run');
+	chrome.contextMenus.create({
+		'id': 'grokfaster_context_menu',
+	    'title': 'grokfaster',
+	    'contexts': ['selection']
+	}, function(){
+		console.log('context menu create run');
+	});
 });
+
+chrome.contextMenus.onClicked.addListener(
+	function(info, tab) {
+		console.log('context menu click handler run');
+    	chrome.tabs.query({
+        	'active': true,
+        	'currentWindow': true
+    	}, function (tabs) {
+    		console.log('tab query callback run');
+        	chrome.tabs.sendMessage(tabs[0].id, {
+            	'action': 'grok_start',
+        	});
+    	});
+	}
+);
+
