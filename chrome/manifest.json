@@ -12,7 +12,7 @@
   },
 
   "permissions": [
-    "contextMenus", "activeTab", "storage", "*://*/*"
+    "contextMenus", "activeTab", "storage", "<all_urls>"
   ],
   "browser_action": {
     "default_icon": "res/icon.png",
@@ -21,7 +21,7 @@
   "content_scripts": [ {
     "css": [ "content.css" ],
     "js": [ "content.js" ],
-    "matches": [ "http://*/*", "*://*/*" ],
+    "matches": [ "<all_urls>" ],
     "all_frames": true,
     "run_at": "document_start"
   } ],

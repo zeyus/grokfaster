@@ -7,8 +7,8 @@ var grokfaster = {
 		var word = '';
 		while(word === ''){
 			word = words.shift();
-			if(!word){return false;}
-			word = word.replace(/\r|\n|\s/gm,'');
+			if(word === undefined){return false;}
+			word = word.replace(/\s/gm,'');
 		}
 		return word;
 	},
@@ -21,7 +21,9 @@ var grokfaster = {
 		var word_el = document.createElement('div');
 
 		var bg_el = document.createElement('div');
-		var words = text.split(' ');
+		var words = text.replace(/\r|\n/gm, ' ');
+		console.log(words);
+		words = words.split(' ');
 
 		if(words.length<2){return;}
 		grokfaster_running = true;
