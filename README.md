@@ -22,3 +22,6 @@ Ideas for further developement:
 + Pause-button with possibility to break the auto-reading and bringing up the part of the text that you paused at
 + Pay attention to the punctuation such as comma-signs
 + Longer break/pause needed for new sentience (Give time for cognitive understanding that new information begins) 
++ add pause button (not just space bar)
++ allow user to scan back X words while paused (maybe 5, 10, 15??) with button or keyboard
++ highlight word they were at when they close the reader
