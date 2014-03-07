@@ -2,6 +2,7 @@
 var options = {};
 var grokfaster_running = false;
 var grokfaster_paused = false;
+var delay =  60/300*1000;
 var grokfaster = {
 	format_word: function(word){
 		if(!options.focal_point){
@@ -54,7 +55,7 @@ var grokfaster = {
 
 		if(words.length<2){return;}
 		grokfaster_running = true;
-		var delay = 60/options.wpm*1000;
+		delay = 60/options.wpm*1000;
 
 		bg_el.setAttribute('id','grokFadeBG');
 		container_el.setAttribute('id', 'grokReader');
