@@ -5,6 +5,7 @@ So far
 ----------
 
 + Option for WPM
++ highlight text and right click - selected text can be displayed to you from context menu
 + Prev and Next word (optional in future)
 + Spacebar for pause
 + Escape / click background to quit
