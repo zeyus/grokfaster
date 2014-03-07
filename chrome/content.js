@@ -1,7 +1,7 @@
 
 var options = {};
 var grokfaster_running = false;
-
+var grokfaster_paused = false;
 var grokfaster = {
 	shiftword: function(words){
 		var word = '';
@@ -45,27 +45,47 @@ var grokfaster = {
 		document.body.appendChild(container_el);
 		var jobID = 0;
 
-		function grokfaster_kill(){
+		var grokfaster_kill = function(){
+			if(!grokfaster_running){return;}
 			if(jobID){
 				clearInterval(jobID);
 			}
 			document.body.removeChild(bg_el);
 			document.body.removeChild(container_el);
+			document.removeEventListener('keyup', handle_key_events);
 			grokfaster_running = false;
 		}
 
-		bg_el.addEventListener('click', grokfaster_kill);
-		document.addEventListener('keyup', function(e){
+		var grokfaster_pause = function(){
+			if(!grokfaster_running){return;}
+			if(jobID && !grokfaster_paused){
+				clearInterval(jobID);
+				grokfaster_paused = true;
+				jobID = 0;
+			}else if(grokfaster_paused){
+				jobID = setInterval(grokfaster_run, delay);
+				grokfaster_paused = false;
+			}
+		}
+
+		var handle_key_events = function(e){
 			e = e || window.event;
     		if (e.keyCode == 27) {
     			grokfaster_kill();
+    		}else if(e.keyCode == 32){
+				e.preventDefault();
+				grokfaster_pause();
     		}
-		});
+		}
+
+		bg_el.addEventListener('click', grokfaster_kill);
+
+		document.addEventListener('keydown', handle_key_events, true);
 
 		var nextWord = '';
 		var first = true;
 
-		jobID = setInterval(function(){
+		var grokfaster_run = function(){
 			if(first){
 				first = false;
 				word_el.innerHTML=grokfaster.shiftword(words);
@@ -86,8 +106,9 @@ var grokfaster = {
 			next_word_el.innerHTML = nextWord;
 
 			curWord=nextWord;
+		}
 
-		}, delay);
+		jobID = setInterval(grokfaster_run, delay);
 	}
 	
 };
