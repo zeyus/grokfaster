@@ -5,6 +5,14 @@ var grokfaster_shutting_down = false;
 var grokfaster_paused = false;
 var delay =  60/300*1000;
 var grokfaster = {
+	calculate_additional_delay: function(word){
+		if(options.pause_sentence_time > 0 && word.match(/\."?'?(\s+|)?$/) !== null){
+			return options.pause_sentence_time;
+		}else if(options.pause_other_time && word.match(/(;|,|:)$/) !== null){
+			return options.pause_other_time;
+		}
+		return 0;
+	},
 	format_word: function(word){
 		if(!options.focal_point){
 			return word;
@@ -101,7 +109,7 @@ var grokfaster = {
 			if(!grokfaster_running){return;}
 			if(!grokfaster_paused){
 				grokfaster_paused = true;
-			}else if(grokfaster_paused){
+			}else{
 				grokfaster_paused = false;
 				grokfaster_run();	
 			}
@@ -128,6 +136,7 @@ var grokfaster = {
 		var word_tmp = '';
 		var grokfaster_run = function(){
 			if(!grokfaster_running||grokfaster_shutting_down||grokfaster_paused){return;}
+			var additional_delay = 0;
 			if(first){
 				first = false;
 				if(options.focal_point){
@@ -144,7 +153,8 @@ var grokfaster = {
 					word_el.innerHTML=grokfaster.prepare_next_word(words);
 					next_word_el.innerHTML=grokfaster.prepare_next_word(words);
 				}
-				setTimeout(grokfaster_run, delay);
+				additional_delay = grokfaster.calculate_additional_delay(word_el.textContent || word_el.innerText);
+				setTimeout(grokfaster_run, delay+additional_delay);
 				return;
 			}
 			nextWord = grokfaster.prepare_next_word(words);
@@ -163,8 +173,9 @@ var grokfaster = {
 			}else{
 				next_word_el.innerHTML = nextWord;
 			}
+			additional_delay = grokfaster.calculate_additional_delay(word_el.textContent || word_el.innerText);
 			curWord=nextWord;
-			setTimeout(grokfaster_run, delay);
+			setTimeout(grokfaster_run, delay+additional_delay);
 		}
 
 		grokfaster_run();

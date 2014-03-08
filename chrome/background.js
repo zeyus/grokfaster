@@ -3,9 +3,9 @@ var default_options = {
 	'wpm': 300, //words per minut
 	'focal_point': true, //highlight the focal point
 	'dim_background': true, //fade the background
-	'pause_sentence_time': 300, //additional time in ms to pause
+	'pause_sentence_time': 100, //additional time in ms to pause
 	'pause_paragraph_time': 0,
-	'pause_other_time': 300, //additional time in ms to pause
+	'pause_other_time': 50, // time in ms to pause
 	'show_additional': true // show the previous and next words
 };
 

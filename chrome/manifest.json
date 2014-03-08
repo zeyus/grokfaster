@@ -3,7 +3,7 @@
 
   "name": "grokfaster",
   "description": "speed read the internet, grok what you need to, faster.",
-  "version": "0.1.1",
+  "version": "0.1.2",
 
   "icons": {
     "128": "res/icon128.png",

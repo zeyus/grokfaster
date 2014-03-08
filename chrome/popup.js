@@ -32,8 +32,8 @@ var grokfaster = {
 							'focal_point': focal_point,
 							'show_additional': show_additional,
 							'dim_background': dim_background,
-							'pause_sentence_time': pause_sentence_time_el.value,
-							'pause_other_time': pause_other_time_el.value
+							'pause_sentence_time': parseInt(pause_sentence_time_el.value),
+							'pause_other_time': parseInt(pause_other_time_el.value)
 						}
 					}, 
 				function(response) { 
