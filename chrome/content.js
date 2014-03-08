@@ -158,7 +158,6 @@ var grokfaster = {
 				clearInterval(jobID);
 				grokfaster_shutting_down = true;
 				setTimeout(grokfaster_kill,delay+1000);
-				grokfaster_running = false;
 				return;
 			}
 			if(options.focal_point){
