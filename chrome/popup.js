@@ -14,6 +14,8 @@ var grokfaster = {
 		var focal_point_el = document.getElementById('focal_point');
 		var show_additional_el = document.getElementById('show_additional');
 		var dim_background_el = document.getElementById('dim_background');
+		var pause_sentence_time_el = document.getElementById('pause_sentence_time');
+		var pause_other_time_el = document.getElementById('pause_other_time');
 
 		var save_el = document.getElementById('save');
 		
@@ -29,7 +31,9 @@ var grokfaster = {
 							'wpm': wpm_el.value, 
 							'focal_point': focal_point,
 							'show_additional': show_additional,
-							'dim_background': dim_background
+							'dim_background': dim_background,
+							'pause_sentence_time': pause_sentence_time_el.value,
+							'pause_other_time': pause_other_time_el.value
 						}
 					}, 
 				function(response) { 
@@ -48,6 +52,8 @@ var grokfaster = {
 			focal_point_el.checked = options.focal_point ? true : false;
 			show_additional_el.checked = options.show_additional ? true : false;
 			dim_background_el.checked = options.dim_background ? true : false;
+			pause_sentence_time_el.value = options.pause_sentence_time;
+			pause_other_time_el.value = options.pause_other_time;
 
 			save_el.removeAttribute('disabled');
 		});

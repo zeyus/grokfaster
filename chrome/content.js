@@ -82,13 +82,11 @@ var grokfaster = {
 			document.body.appendChild(bg_el);
 		}
 		document.body.appendChild(container_el);
-		var jobID = 0;
 
 		var grokfaster_kill = function(){
 			if(!grokfaster_running){return;}
-			if(jobID){
-				clearInterval(jobID);
-			}
+			grokfaster_shutting_down = true;
+			grokfaster_running = false;
 			if(options.dim_background){
 				document.body.removeChild(bg_el);
 			}
@@ -101,13 +99,11 @@ var grokfaster = {
 
 		var grokfaster_pause = function(){
 			if(!grokfaster_running){return;}
-			if(jobID && !grokfaster_paused){
-				clearInterval(jobID);
+			if(!grokfaster_paused){
 				grokfaster_paused = true;
-				jobID = 0;
 			}else if(grokfaster_paused){
 				grokfaster_paused = false;
-				jobID = setInterval(grokfaster_run, delay);	
+				grokfaster_run();	
 			}
 		}
 
@@ -148,6 +144,7 @@ var grokfaster = {
 					word_el.innerHTML=grokfaster.prepare_next_word(words);
 					next_word_el.innerHTML=grokfaster.prepare_next_word(words);
 				}
+				setTimeout(grokfaster_run, delay);
 				return;
 			}
 			nextWord = grokfaster.prepare_next_word(words);
@@ -155,7 +152,6 @@ var grokfaster = {
 			word_el.innerHTML=next_word_el.innerHTML;
 			if(!nextWord){
 				next_word_el.innerHTML = '&nbsp;';
-				clearInterval(jobID);
 				grokfaster_shutting_down = true;
 				setTimeout(grokfaster_kill,delay+1000);
 				return;
@@ -168,9 +164,10 @@ var grokfaster = {
 				next_word_el.innerHTML = nextWord;
 			}
 			curWord=nextWord;
+			setTimeout(grokfaster_run, delay);
 		}
 
-		jobID = setInterval(grokfaster_run, delay);
+		grokfaster_run();
 	}
 	
 };

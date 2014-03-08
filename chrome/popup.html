@@ -27,6 +27,12 @@
         <div class="option">
           <input type="checkbox" id="dim_background" value="true"> Dim background
         </div>
+        <div class="option">
+          <input type="number" min="0" max="1000" id="pause_sentence_time" step="50"> Time in <i>ms</i> to pause after full stop.
+        </div>
+        <div class="option">
+          <input type="number" min="0" max="1000" id="pause_other_time" step="50"> Time in <i>ms</i> to pause after comma, colon, etc.
+        </div>
       </div>
      </div>
      <input type="submit" id="save" value="save" disabled="disabled">

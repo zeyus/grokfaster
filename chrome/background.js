@@ -3,11 +3,8 @@ var default_options = {
 	'wpm': 300, //words per minut
 	'focal_point': true, //highlight the focal point
 	'dim_background': true, //fade the background
-	'pause_sentence': true, // slight pause after each full stop
 	'pause_sentence_time': 300, //additional time in ms to pause
-	'pause_paragraph': false, //extra pause for end of P?
 	'pause_paragraph_time': 0,
-	'pause_other': false, //comma, semicolon, colon, etc
 	'pause_other_time': 300, //additional time in ms to pause
 	'show_additional': true // show the previous and next words
 };
