@@ -9,7 +9,7 @@
   line-height: 92px;
   text-align: left;
   background-color: transparent;
-  color:black;
+  color:#383838;
   font-family: "Helvetica", "Arial", "Verdana", sans-serif;
   font-size: 40px;
   
@@ -63,7 +63,7 @@
 }
 
 #grokReader #grokCurrentWord .grokWordHighlight {
-    color: red;
+    color: #5893eb;
     display: inline-block;
     box-sizing:content-box;
 }
