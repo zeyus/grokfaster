@@ -25,3 +25,7 @@ Ideas for further developement:
 + add pause button (not just space bar)
 + allow user to scan back X words while paused (maybe 5, 10, 15??) with button or keyboard
 + highlight word they were at when they close the reader
++ scroll to change WPM on the fly
++ show estimated time for read (maybe estimated time remaining, but could be distracting, maybe optional)
++ show key map somewhere on screen (space to pause, scroll to change speed, etc)
+
